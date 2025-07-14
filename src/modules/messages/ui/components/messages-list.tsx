@@ -58,12 +58,14 @@ export const MessagesList = ({ initialMessages }: Props) => {
         ))}
 
         {streamingMessage && (
-          <MessagesCard
-            status={status}
-            key={streamingMessage.id}
-            content={streamingMessage.content}
-            role={streamingMessage.role}
-          />
+          <div>
+            <MessagesCard
+              status={status}
+              key={streamingMessage.id}
+              content={streamingMessage.content}
+              role={streamingMessage.role}
+            />
+          </div>
         )}
         {status === "submitted" && <MessageGenerating />}
         <div ref={bottomRef} />

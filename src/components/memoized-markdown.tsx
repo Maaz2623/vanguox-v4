@@ -18,12 +18,12 @@ const MemoizedMarkdownBlock = memo(
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw, rehypeHighlight]}
         components={{
-          h1: (props) => <h1 className="text-2xl font-bold my-3 " {...props} />,
+          h1: (props) => <h1 className="text-2xl font-bold mb-4" {...props} />,
           h2: (props) => (
-            <h2 className="text-xl font-semibold my-2" {...props} />
+            <h2 className="text-xl font-semibold mb-4" {...props} />
           ),
           h3: (props) => (
-            <h3 className="text-lg font-semibold mb-2" {...props} />
+            <h3 className="text-lg font-semibold mb-4" {...props} />
           ),
           ul: (props) => (
             <ul className="list-disc pl-6 space-y-1 mb-4" {...props} />
@@ -40,8 +40,6 @@ const MemoizedMarkdownBlock = memo(
           strong: (props) => <strong className="font-semibold" {...props} />,
           code: ({ className, children }) => {
             const isBlock = className?.includes("language-"); // <--- detect block code
-
-          
 
             if (isBlock) {
               return <CodeBlock className={className}>{children}</CodeBlock>;
