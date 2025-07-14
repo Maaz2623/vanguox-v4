@@ -39,7 +39,7 @@ const MemoizedMarkdownBlock = memo(
 
             if (isBlock) {
               return (
-                <pre className="px-4 scrollbar-thin mx-auto py-2 my-4 bg-black/30 overflow-x-auto text-sm rounded-md">
+                <pre className="px-6 scrollbar-thin mx-auto py-4 my-4 bg-neutral-200 dark:bg-neutral-800 overflow-x-auto text-sm rounded-md overflow-hidden">
                   <code className={className} {...props}>
                     {children}
                   </code>

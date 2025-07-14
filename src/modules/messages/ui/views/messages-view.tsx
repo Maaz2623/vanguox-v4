@@ -5,6 +5,8 @@ import { useQuery } from "convex/react";
 import { api } from "../../../../../convex/_generated/api";
 import { useMemo } from "react";
 import { Message } from "ai";
+import { MessagesListLoading } from "../components/messages-list-loading";
+import { SiteHeader } from "@/modules/chat/ui/components/site-header";
 
 export const MessagesView = () => {
   const dbMessages = useQuery(api.messages.getMessages, {
@@ -21,11 +23,17 @@ export const MessagesView = () => {
       })),
     [dbMessages]
   );
-  if (!dbMessages) return <div>loading...</div>;
 
   return (
     <div className="h-screen relative">
-      <MessagesList initialMessages={initialMessages} />
+      <div className="">
+        <SiteHeader />
+        {!dbMessages ? (
+          <MessagesListLoading />
+        ) : (
+          <MessagesList initialMessages={initialMessages} />
+        )}
+      </div>
       <MessagesForm />
     </div>
   );

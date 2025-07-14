@@ -49,24 +49,18 @@ export const MessagesList = ({ initialMessages }: Props) => {
     }
   }, [messages.length, messages, status, isLastMessageUser]); // only when a new message is added
 
-  if (!messages) return <div>loading...</div>;
-
   return (
-    <ScrollArea className="h-[550px] border">
-      <div className="h-full w-3/4 mx-auto">
+    <ScrollArea className="h-[550px] relative">
+      <div className="bg-gradient-to-b from-neutral-100 dark:from-neutral-900 to-transparent h-10 absolute top-0 w-full" />
+      <div className="h-full w-3/4 mx-auto pt-14 flex flex-col gap-y-10">
         {stableMessages.map((message, i) => (
-          <MessagesCard
-            key={i}
-            id={message.id}
-            content={message.content}
-            role={message.role}
-          />
+          <MessagesCard key={i} content={message.content} role={message.role} />
         ))}
 
         {streamingMessage && (
           <MessagesCard
+            status={status}
             key={streamingMessage.id}
-            id={streamingMessage.id}
             content={streamingMessage.content}
             role={streamingMessage.role}
           />
