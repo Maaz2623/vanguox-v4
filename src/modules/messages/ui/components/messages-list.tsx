@@ -52,7 +52,7 @@ export const MessagesList = ({ initialMessages }: Props) => {
   return (
     <ScrollArea className="h-[550px] relative">
       <div className="bg-gradient-to-b from-neutral-100 dark:from-neutral-900 to-transparent h-10 absolute top-0 w-full" />
-      <div className="h-full w-3/4 mx-auto pt-14 flex flex-col gap-y-10">
+      <div className="h-full w-3/4 mx-auto pt-14 flex flex-col gap-y-10 pb-34">
         {stableMessages.map((message, i) => (
           <MessagesCard key={i} content={message.content} role={message.role} />
         ))}

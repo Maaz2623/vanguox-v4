@@ -88,7 +88,7 @@ export const AssistantMessage = React.memo(
                   <Button
                     variant={`ghost`}
                     size={`icon`}
-                    className="cursor-pointer rounded-[10px]!"
+                    className="cursor-pointer p-0! rounded-[10px]!"
                   >
                     <CopyIcon className="size-4" />
                   </Button>

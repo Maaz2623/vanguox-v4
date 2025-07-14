@@ -1,6 +1,10 @@
 import { marked } from "marked";
 import { memo, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
+import { CodeBlock } from "./code-block";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import rehypeHighlight from "rehype-highlight";
 
 function parseMarkdownIntoBlocks(markdown: string): string[] {
   const tokens = marked.lexer(markdown);
@@ -11,8 +15,8 @@ const MemoizedMarkdownBlock = memo(
   ({ content }: { content: string }) => {
     return (
       <ReactMarkdown
-        // remarkPlugins={[remarkGfm]}
-        // rehypePlugins={[rehypeRaw, rehypeHighlight]}
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw, rehypeHighlight]}
         components={{
           h1: (props) => <h1 className="text-2xl font-bold my-3 " {...props} />,
           h2: (props) => (
@@ -34,22 +38,18 @@ const MemoizedMarkdownBlock = memo(
 
           p: (props) => <p className="mb-4 leading-6" {...props} />,
           strong: (props) => <strong className="font-semibold" {...props} />,
-          code: ({ className, children, ...props }) => {
+          code: ({ className, children }) => {
             const isBlock = className?.includes("language-"); // <--- detect block code
 
+          
+
             if (isBlock) {
-              return (
-                <pre className="px-6 scrollbar-thin mx-auto py-4 my-4 bg-neutral-200 dark:bg-neutral-800 overflow-x-auto text-sm rounded-md overflow-hidden">
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                </pre>
-              );
+              return <CodeBlock className={className}>{children}</CodeBlock>;
             }
 
             // Inline code (rendered inside <p>)
             return (
-              <code className="bg-muted px-1 py-0.5 mx-auto rounded text-[14px] font-mono">
+              <code className="bg-neutral-300 dark:bg-neutral-700 px-1 py-0.5 mx-auto rounded text-[14px] font-mono">
                 {children}
               </code>
             );
