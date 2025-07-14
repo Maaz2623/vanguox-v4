@@ -1,6 +1,6 @@
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
 import { ChatViewSidebar } from "../components/chat-view-sidebar";
-import { SiteHeader } from "../components/site-header";
+import { MessagesView } from "@/modules/messages/ui/views/messages-view";
 
 export const ChatView = () => {
   return (
@@ -17,9 +17,9 @@ export const ChatView = () => {
         variant="inset"
         className="border-r border-neutral-200 dark:border-neutral-800"
       />
-      <SidebarInset className="bg-transparent shadow-none!">
-        <SiteHeader />
-        <div></div>
+      <SidebarInset className="bg-transparent shadow-none! m-0! rounded-none! border-none!">
+        {/* <SiteHeader /> */}
+        <MessagesView />
       </SidebarInset>
     </SidebarProvider>
   );

@@ -16,6 +16,9 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
@@ -24,6 +27,8 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useTheme } from "next-themes";
+import { MonitorIcon, MoonIcon, SunIcon, SunMoonIcon } from "lucide-react";
 
 export function ChatViewNavUser({
   user,
@@ -35,6 +40,8 @@ export function ChatViewNavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+
+  const { setTheme } = useTheme();
 
   return (
     <SidebarMenu>
@@ -80,6 +87,28 @@ export function ChatViewNavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
+              <DropdownMenuItem asChild>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger className="">
+                    <SunMoonIcon className="mr-1 size-4.5 text-neutral-600 dark:text-neutral-400" />
+                    Theme
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem onClick={() => setTheme("light")}>
+                      <SunIcon />
+                      Light
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("dark")}>
+                      <MoonIcon />
+                      Dark
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setTheme("system")}>
+                      <MonitorIcon />
+                      System
+                    </DropdownMenuItem>
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconUserCircle />
                 Account

@@ -1,7 +1,13 @@
 "use client";
 
 import * as React from "react";
-import { ChevronsUpDown, Plus } from "lucide-react";
+import {
+  AudioWaveform,
+  ChevronsUpDown,
+  Command,
+  GalleryVerticalEnd,
+  Plus,
+} from "lucide-react";
 
 import {
   DropdownMenu,
@@ -19,15 +25,25 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 
-export function ChatViewTeamSwitcher({
-  teams,
-}: {
-  teams: {
-    name: string;
-    logo: React.ElementType;
-    plan: string;
-  }[];
-}) {
+const teams = [
+  {
+    name: "Acme Inc",
+    logo: GalleryVerticalEnd,
+    plan: "Enterprise",
+  },
+  {
+    name: "Acme Corp.",
+    logo: AudioWaveform,
+    plan: "Startup",
+  },
+  {
+    name: "Evil Corp.",
+    logo: Command,
+    plan: "Free",
+  },
+];
+
+export function ChatViewTeamSwitcher() {
   const { isMobile } = useSidebar();
   const [activeTeam, setActiveTeam] = React.useState(teams[0]);
 
